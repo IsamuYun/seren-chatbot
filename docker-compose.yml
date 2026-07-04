@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/.env
+    restart: unless-stopped
+    # Uncomment if AnythingLLM also runs in Docker on this host and you want
+    # to reach it by container/service name (see server/.env for the matching
+    # ANYTHINGLLM_BASE_URL value). Replace "anythingllm_default" with the
+    # actual network AnythingLLM's compose file created.
+    # networks:
+    #   - anythingllm_default
+
+# networks:
+#   anythingllm_default:
+#     external: true
