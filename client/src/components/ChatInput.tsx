@@ -38,7 +38,7 @@ export function ChatInput({ disabled, onSend }: Props) {
         placeholder="问点什么..."
         rows={1}
         disabled={disabled}
-        className="max-h-32 flex-1 resize-none rounded-2xl border border-gray-300 bg-gray-50 px-4 py-2 text-base leading-6 outline-none focus:border-blue-500 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900"
+        className="max-h-32 flex-1 resize-none rounded-2xl border border-gray-300 bg-gray-50 px-4 py-2 text-base leading-6 text-gray-900 outline-none placeholder:text-gray-400 focus:border-blue-500 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder:text-gray-500"
       />
       <button
         type="submit"

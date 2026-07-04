@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+html {
+  color-scheme: light dark;
+}
+
 html,
 body,
 #root {
