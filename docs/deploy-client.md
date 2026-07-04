@@ -35,6 +35,15 @@ npm run build         # 产出 client/dist
 
 加进主屏幕后会全屏打开（`display: standalone`），没有浏览器地址栏。如果要换图标/名字，改 `public/icons/icon.svg` 后重新跑一遍 `rsvg-convert` 生成三个尺寸，再改 `public/manifest.webmanifest` 里的 `name`/`short_name`。
 
+## 部署到 Ubuntu 24.04
+
+client 的构建本身跟操作系统无关，就是普通的 `npm run build`。实际的部署目标机（比如 Ubuntu 24.04 服务器）不需要对 client 做任何单独操作：
+
+- 走 Docker 部署时，`client/dist` 是在 `Dockerfile` 的 `client-build` stage 里、构建镜像的过程中自动生成的，Ubuntu 服务器上装了 Docker 就够了，细节见 `deploy-server.md` 的「部署到 Ubuntu 24.04」章节。
+- 只有走不用 Docker、手动 `npm start` 的路径时，才需要在服务器上也装 Node、手动跑一遍 `cd client && npm ci && npm run build`（同样在 `deploy-server.md` 里有完整步骤）。
+
+如果只是想在 Ubuntu 机器上临时跑一下 client 的 dev server 做真机联调，`npm run dev -- --host` 同样适用（`--host` 让 Vite 监听所有网卡，方便局域网内手机访问）。
+
 ## 如果以后要跟 server 分开部署
 
 当前架构默认是同源部署（一个 Docker 镜像里 server 顺带托管 client 的静态文件）。如果以后有需求把 client 单独放到别的静态托管（比如 CDN 或另一台机器），需要额外做两件事，目前**都还没实现**：

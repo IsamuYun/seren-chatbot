@@ -6,6 +6,11 @@ services:
     env_file:
       - ./server/.env
     restart: unless-stopped
+    # Makes host.docker.internal resolve on Linux too (Docker Desktop on
+    # Mac/Windows already provides it natively; on plain Docker Engine —
+    # e.g. Ubuntu — it needs this explicit mapping, supported since 20.10).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     # Uncomment if AnythingLLM also runs in Docker on this host and you want
     # to reach it by container/service name (see server/.env for the matching
     # ANYTHINGLLM_BASE_URL value). Replace "anythingllm_default" with the
